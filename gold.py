@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 
 class Gold:
 
@@ -79,18 +80,25 @@ def adapter(sequence):  # Меняет 0 на 1, а 1 на -1
 
 
 
-def main(nka, delay):
+def main(nka, delay =0):
     new = Gold(nka)
-    lst = adapter(new.create_gold())
+    # lst = adapter(new.create_gold())
+    lst = new.create_gold()
     delay = int(delay)
     if delay:
         return lst[-delay:] + lst[:-delay]
     else:
         return lst
 
+
     # return int(nka) ** 2 
 
 
+if __name__=='__main__':
+    a = adapter(main(1))
+    with open('code.txt', mode="w") as file:
+        file.write(' '.join([str(i) for i in a]))
 
-print(main('2', 0))
 
+
+        
